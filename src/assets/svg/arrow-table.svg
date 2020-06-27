@@ -1,0 +1,13 @@
+<svg id="Group_129" data-name="Group 129" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="9" height="15" viewBox="0 0 9 15">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="9" height="5" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="chevron-down" transform="translate(0 10)" clip-path="url(#clip-path)">
+    <path id="chevron-down-2" data-name="chevron-down" d="M6,9l3.5,3L13,9" transform="translate(-5 -8)" fill="none" stroke="#8898aa" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+  </g>
+  <g id="chevron-up" clip-path="url(#clip-path)">
+    <path id="chevron-up-2" data-name="chevron-up" d="M13,12,9.5,9,6,12" transform="translate(-5 -8)" fill="none" stroke="#8898aa" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+  </g>
+</svg>

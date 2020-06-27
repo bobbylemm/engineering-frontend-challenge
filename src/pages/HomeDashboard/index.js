@@ -12,6 +12,8 @@ import TrendDown from "../../assets/svg/trend-down.svg";
 import DollarIcon from "../../assets/svg/card-dollar-icon.svg";
 import StatIcon from "../../assets/svg/card-stat-icon.svg";
 import HomeIcon from "../../assets/svg/home-icon.svg";
+import ArrowSelect from "../../assets/svg/arrow-table.svg";
+
 import cardImg from "../../assets/images/weezie-card-img.jpg";
 import tableLeadingPic from "../../assets/images/table-leading-pic.jpg";
 
@@ -409,7 +411,7 @@ const tableData = {
       createdAt: "20/03/2020",
       status: "pending",
       budget: "$2500",
-      team: [],
+      teamPics: [tableLeadingPic, tableLeadingPic, tableLeadingPic],
       completion: "20%",
     },
     {
@@ -418,7 +420,7 @@ const tableData = {
       leadingPic: tableLeadingPic,
       status: "pending",
       budget: "$2500",
-      team: [],
+      teamPics: [tableLeadingPic, tableLeadingPic, tableLeadingPic],
       completion: "20%",
     },
   ],
@@ -426,7 +428,7 @@ const tableData = {
 
 const TableSection = () => {
   return (
-    <div className="w-full px-12 mt-8">
+    <div className="w-full px-12 my-8">
       <div className="bg-white">
         <SectionHeader
           heading="jobs table"
@@ -435,13 +437,20 @@ const TableSection = () => {
         />
         <div className="flex flex-col">
           <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-            <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+            <div className="align-middle inline-block min-w-full shadow overflow-hidden border-b border-gray-200">
               <table className="min-w-full">
                 <thead>
-                  <tr>
+                  <tr className="bg-main-gray-200">
                     {tableData.headers.map((item) => (
-                      <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                        {item.title}
+                      <th className="px-6 py-3 text-left text-xs font-medium text-main-gray-300 uppercase tracking-wider">
+                        <div className="flex items-center">
+                          <span className="mr-3">{item.title}</span>{" "}
+                          {item.options.length ? (
+                            <div>
+                              <img src={ArrowSelect} />
+                            </div>
+                          ) : null}
+                        </div>
                       </th>
                     ))}
                   </tr>
@@ -468,43 +477,53 @@ const TableSection = () => {
                         <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <div className="flex items-center">
                             <img
-                              className="h-10 w-10 rounded-full mr-3"
+                              className="h-10 w-10 rounded-full mr-3 object-cover"
                               src={item.leadingPic}
                               alt="leading-pic"
                             />
-                            <span>{item.project}</span>
+                            <span className="text-sm font-semibold">
+                              {item.project}
+                            </span>
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                          <div className="ml-4">
-                            <div className="text-sm leading-5 font-medium text-gray-900">
-                              {item.createdAt}
-                            </div>
-                          </div>
+                          <span className="text-sm">{item.createdAt}</span>
                         </td>
                         <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                          <div className="text-sm leading-5">
-                            <span
-                              className="h-4 w-4 rounded-full"
+                          <div className="flex items-center">
+                            <div
+                              className="h-2 w-2 rounded-full mr-3"
                               style={{ backgroundColor: color }}
-                            ></span>
-                            {item.status}
+                            ></div>
+                            <span className="text-sm">{item.status}</span>
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                          <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                            {item.budget}
-                          </span>
+                          <span className="text-sm">{item.budget}</span>
                         </td>
                         <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                          The team goes here
+                          <div className="flex">
+                            {item.teamPics.map((pic, i) => {
+                              return (
+                                <img
+                                  src={pic}
+                                  style={{
+                                    zIndex: item.teamPics.length - i,
+                                  }}
+                                  className="-ml-3 h-8 w-8 object-cover rounded-full"
+                                />
+                              );
+                            })}
+                          </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                          <span>{item.completion}</span>
-                          <ProgressBar
-                            color="#2DCE98"
-                            percentage={item.completion}
-                          />
+                        <td className="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium w-3/12">
+                          <div className="flex items-center">
+                            <span className="mr-12">{item.completion}</span>
+                            <ProgressBar
+                              color="#2DCE98"
+                              percentage={item.completion}
+                            />
+                          </div>
                         </td>
                       </tr>
                     );

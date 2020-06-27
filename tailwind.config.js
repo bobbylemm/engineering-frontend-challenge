@@ -18,6 +18,7 @@ module.exports = {
           300: "#7764E4",
         },
         "main-gray": {
+          200: "#F1F3F9",
           300: "#8898AA",
         },
         "card-text-gray": {
