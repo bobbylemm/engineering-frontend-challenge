@@ -13,6 +13,7 @@ import DollarIcon from "../../assets/svg/card-dollar-icon.svg";
 import StatIcon from "../../assets/svg/card-stat-icon.svg";
 import HomeIcon from "../../assets/svg/home-icon.svg";
 import ArrowSelect from "../../assets/svg/arrow-table.svg";
+import OptionsIcon from "../../assets/svg/options-icon.svg";
 
 import cardImg from "../../assets/images/weezie-card-img.jpg";
 import tableLeadingPic from "../../assets/images/table-leading-pic.jpg";
@@ -148,7 +149,31 @@ const BarchartComp = ({ heading, subHeading }) => {
       display: false,
     },
     type: "bar",
+    scales: {
+      xAxes: [
+        {
+          gridLines: {
+            display: false,
+            drawBorder: false, //<- set this
+          },
+        },
+      ],
+      yAxes: [
+        {
+          gridLines: {
+            borderDash: [8, 4],
+            display: true,
+            drawBorder: false, //<- set this
+          },
+        },
+      ],
+    },
   };
+  const chartKeys = [
+    { name: "ph", color: "#11CDEF" },
+    { name: "abuja", color: "#7764E4" },
+    { name: "lagos", color: "#2DCE98" },
+  ];
   return (
     <div className="bg-white p-6 rounded-lg">
       <div className="flex flex-col mb-12">
@@ -158,9 +183,26 @@ const BarchartComp = ({ heading, subHeading }) => {
         </span>
       </div>
       <Bar data={state.data} width={null} height={null} options={options} />
+      <div className="flex justify-center mt-6">
+        <div className="w-1/2 justify-between flex">
+          {chartKeys.map((item) => (
+            <ChartKey color={item.color} label={item.name} key={item.name} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
+
+const ChartKey = ({ color, label }) => (
+  <div className="flex items-center">
+    <div
+      className="h-4 w-4 rounded-full border-4 mr-2"
+      style={{ borderColor: color }}
+    ></div>
+    <span className="text-xs uppercase font-semibold">{label}</span>
+  </div>
+);
 
 const PieChartComp = ({ heading, subHeading }) => {
   const [state, setState] = useState({
@@ -173,15 +215,64 @@ const PieChartComp = ({ heading, subHeading }) => {
       ],
     },
   });
+  const chartKeys = [
+    { name: "lagos", color: "#11CDEF", amount: "$222,130" },
+    { name: "kaduna", color: "#7764E4", amount: "$122,130" },
+    { name: "ph", color: "#2DCE98", amount: "$35,130" },
+    { name: "ibadan", color: "#FEB969", amount: "$22,130" },
+  ];
   return (
     <div className="bg-white p-6 rounded-lg">
-      <div className="flex flex-col mb-12">
-        <span className="text-main-gray-300 uppercase text-xs">{heading}</span>
-        <span className="text-card-text-gray-300 text-xl font-light capitalize">
-          {subHeading}
-        </span>
+      <div className="flex justify-between mb-12">
+        <div className="flex flex-col">
+          <span className="text-main-gray-300 uppercase text-xs">
+            {heading}
+          </span>
+          <span className="text-card-text-gray-300 text-xl font-light capitalize">
+            {subHeading}
+          </span>
+        </div>
+        <CustomButton text="event report" handler={() => {}} />
       </div>
-      <Doughnut data={state.data} />
+
+      <div class="grid grid-cols-3 gap-4">
+        <div className="col-span-2">
+          <div className="relative">
+            <Doughnut
+              data={state.data}
+              options={{
+                responsive: true,
+                maintainAspectRatio: true,
+              }}
+            />
+            <div
+              className="absolute flex flex-col"
+              style={{ top: "45%", left: "42%" }}
+            >
+              <span>$230,125</span>
+              <span className="text-xs text-center">AMOUNT</span>
+            </div>
+          </div>
+        </div>
+        <div className="col-span-1">
+          <div className="h-full">
+            <ul className="w-full flex justify-between flex-col items-stretch h-full">
+              {chartKeys.map((item) => {
+                return (
+                  <li className="flex justify-between">
+                    <ChartKey
+                      color={item.color}
+                      label={item.name}
+                      key={item.name}
+                    />
+                    <span className="text-sm">{item.amount}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -200,7 +291,7 @@ const HeaderSection = () => (
         <span>WEEZIE</span>
       </div>
     </div>
-    <div className="flex justify-between flex-wrap">
+    <div className="grid grid-cols-4 gap-4">
       {stat.map((item) => {
         return (
           <StatCard
@@ -216,15 +307,17 @@ const HeaderSection = () => (
 );
 
 const StatCard = ({ statistic, title, icon, delta }) => (
-  <div className="bg-white w-20p rounded-lg p-6">
+  <div className="bg-white rounded-lg p-6">
     <div className="flex justify-between mb-2">
       <div className="flex flex-col">
-        <span className="text-main-gray-300 uppercase text-sm">{title}</span>
+        <span className="text-main-gray-300 uppercase text-sm mb-2">
+          {title}
+        </span>
         <span className="text-card-text-gray-300 text-xl font-light">
           {statistic}
         </span>
       </div>
-      <img src={icon} />
+      <img src={icon} className="h-16" />
     </div>
 
     <div>
@@ -251,7 +344,7 @@ const NewsSection = () => (
 );
 
 const SectionHeader = ({ heading, btnHandler, btnText }) => (
-  <div className="border-b p-6 flex justify-between">
+  <div className="border-b p-6 flex justify-between items-center">
     <h3 className="capitalize">{heading}</h3>
     <CustomButton handler={btnHandler} text={btnText} />
   </div>
@@ -367,8 +460,15 @@ const CustomButton = ({ text, handler }) => (
 const NewsCard = ({ img, heading, info, description }) => (
   <div className="col-span-1 w-5/6 h-full">
     <div className="h-full">
-      <img src={img} className="w-full rounded-t-lg" />
-      <div className="bg-white p-8 flex flex-col">
+      <img
+        src={img}
+        className="w-full rounded-t-lg"
+        style={{ height: "40%" }}
+      />
+      <div
+        className="bg-white p-8 flex flex-col rounded-b-lg"
+        style={{ height: "60%" }}
+      >
         <span className="text-md font-semibold mb-3">{heading}</span>
         <span className="font-normal text-xs text-main-gray-300 mb-4">
           {info}
@@ -437,7 +537,7 @@ const TableSection = () => {
         />
         <div className="flex flex-col">
           <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-            <div className="align-middle inline-block min-w-full shadow overflow-hidden border-b border-gray-200">
+            <div className="align-middle inline-block min-w-full overflow-hidden border-b border-gray-200 shadow-md">
               <table className="min-w-full">
                 <thead>
                   <tr className="bg-main-gray-200">
@@ -516,13 +616,16 @@ const TableSection = () => {
                             })}
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium w-3/12">
+                        <td className="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium w-4/12">
                           <div className="flex items-center">
                             <span className="mr-12">{item.completion}</span>
                             <ProgressBar
                               color="#2DCE98"
                               percentage={item.completion}
                             />
+                            <div className="h-12 w-24 ml-16 rounded-full shadow-lg bg-white flex justify-center">
+                              <img src={OptionsIcon} />
+                            </div>
                           </div>
                         </td>
                       </tr>
