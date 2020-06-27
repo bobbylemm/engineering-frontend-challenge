@@ -45,7 +45,7 @@ const Layout = ({ children }) => {
           </ul>
         </div>
       </div>
-      <div className="w-6/7 bg-gray-100 min-h-screen">
+      <div className="w-6/7 min-h-screen bg-custom-bg-light-100">
         <div className="w-full h-20 bg-main-blue-300 shadow flex items-center px-12">
           <div className="w-1/6">
             <input

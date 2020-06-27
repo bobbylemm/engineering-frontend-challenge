@@ -26,6 +26,9 @@ module.exports = {
         "custom-green": {
           100: "#2DCE98",
         },
+        "custom-bg-light": {
+          100: "#F1F3F9",
+        },
       },
     },
   },
