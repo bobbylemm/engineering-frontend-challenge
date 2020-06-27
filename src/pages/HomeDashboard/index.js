@@ -205,7 +205,7 @@ const ChartKey = ({ color, label }) => (
 );
 
 const PieChartComp = ({ heading, subHeading }) => {
-  const [state, setState] = useState({
+  const [state, _] = useState({
     data: {
       datasets: [
         {
@@ -286,7 +286,7 @@ const HeaderSection = () => (
     <div className="text-white flex justify-between mb-8">
       <div className="flex items-center">
         <span className="text-2xl mr-8">Home</span>
-        <img src={HomeIcon} className="mr-3" />
+        <img src={HomeIcon} className="mr-3" alt="home-icon" />
         <span className="text-xs font-thin">Home</span>
         <span className="mx-3">-</span>
         <span className="text-xs font-thin">Dashboard</span>
@@ -323,7 +323,7 @@ const StatCard = ({ statistic, title, icon, delta }) => (
           {statistic}
         </span>
       </div>
-      <img src={icon} className="h-16" />
+      <img src={icon} className="h-16" alt="icon-stat" />
     </div>
 
     <div>
@@ -468,6 +468,7 @@ const NewsCard = ({ img, heading, info, description }) => (
     <div className="h-full">
       <img
         src={img}
+        alt="news-img"
         className="w-full rounded-t-lg"
         style={{ height: "40%" }}
       />
@@ -553,7 +554,7 @@ const TableSection = () => {
                           <span className="mr-3">{item.title}</span>{" "}
                           {item.options.length ? (
                             <div>
-                              <img src={ArrowSelect} />
+                              <img src={ArrowSelect} alt="arrow-select" />
                             </div>
                           ) : null}
                         </div>
@@ -613,6 +614,7 @@ const TableSection = () => {
                               return (
                                 <img
                                   src={pic}
+                                  alt="team-member"
                                   style={{
                                     zIndex: item.teamPics.length - i,
                                   }}
@@ -630,7 +632,7 @@ const TableSection = () => {
                               percentage={item.completion}
                             />
                             <div className="h-12 w-24 ml-16 rounded-full shadow-lg bg-white flex justify-center">
-                              <img src={OptionsIcon} />
+                              <img src={OptionsIcon} alt="option-icon" />
                             </div>
                           </div>
                         </td>
