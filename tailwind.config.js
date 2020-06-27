@@ -29,6 +29,7 @@ module.exports = {
         },
         "custom-bg-light": {
           100: "#F1F3F9",
+          200: "#F6F9FC",
         },
       },
     },

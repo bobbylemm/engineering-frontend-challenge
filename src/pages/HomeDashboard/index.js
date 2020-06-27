@@ -244,6 +244,7 @@ const PieChartComp = ({ heading, subHeading }) => {
                 responsive: true,
                 maintainAspectRatio: true,
               }}
+              width={"200"}
             />
             <div
               className="absolute flex flex-col"
@@ -255,8 +256,11 @@ const PieChartComp = ({ heading, subHeading }) => {
           </div>
         </div>
         <div className="col-span-1">
-          <div className="h-full">
-            <ul className="w-full flex justify-between flex-col items-stretch h-full">
+          <div className="h-full flex flex-col justify-center">
+            <ul
+              className="w-full flex justify-between flex-col items-stretch pl-3 h"
+              style={{ height: "70%" }}
+            >
               {chartKeys.map((item) => {
                 return (
                   <li className="flex justify-between">
@@ -288,7 +292,9 @@ const HeaderSection = () => (
         <span className="text-xs font-thin">Dashboard</span>
       </div>
       <div>
-        <span>WEEZIE</span>
+        <span className="text-2xl text-light-blue-300 font-extrabold">
+          WEEZIE
+        </span>
       </div>
     </div>
     <div className="grid grid-cols-4 gap-4">

@@ -29,10 +29,13 @@ const Layout = ({ children }) => {
         </div>
 
         <div className="mt-2">
-          <ul className="list-reset">
+          <ul className="list-reset px-2">
             {links.map((link) => {
               return (
-                <li className="w-full py-4 flex justify-center" key={link.name}>
+                <li
+                  className="w-full py-4 flex justify-center hover:bg-custom-bg-light-100 rounded-md mb-4"
+                  key={link.name}
+                >
                   <Link
                     className="text-white hover:text-gray-500"
                     to={link.path}
@@ -49,7 +52,7 @@ const Layout = ({ children }) => {
         <div className="w-full h-20 bg-main-blue-300 shadow flex items-center px-12">
           <div className="w-1/6">
             <input
-              className="appearance-none border rounded w-full py-3 px-3 text-gray-700 rounded-full leading-tight focus:outline-none focus:shadow-outline"
+              className="appearance-none border w-full py-3 px-3 text-gray-700 rounded-full leading-tight focus:outline-none focus:shadow-outline"
               type="text"
               placeholder="Username"
             />
