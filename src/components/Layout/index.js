@@ -9,6 +9,11 @@ import ChatIcon from "../../assets/svg/chat-icon.svg";
 import CalendarIcon from "../../assets/svg/calendar-icon.svg";
 import ProfileIcon from "../../assets/svg/user-icon.svg";
 import SettingIcon from "../../assets/svg/settings-icon.svg";
+import SearchIcon from "../../assets/svg/search-icon.svg";
+import HelpIcon from "../../assets/svg/help-icon.svg";
+import BellIcon from "../../assets/svg/bell-icon.svg";
+
+import profilePic from "../../assets/images/table-leading-pic.jpg";
 
 const Layout = ({ children }) => {
   const links = [
@@ -49,13 +54,30 @@ const Layout = ({ children }) => {
         </div>
       </div>
       <div className="w-6/7 min-h-screen bg-custom-bg-light-100">
-        <div className="w-full h-20 bg-main-blue-300 shadow flex items-center px-12">
-          <div className="w-1/6">
-            <input
-              className="appearance-none border w-full py-3 px-3 text-gray-700 rounded-full leading-tight focus:outline-none focus:shadow-outline"
-              type="text"
-              placeholder="Username"
-            />
+        <div className="w-full h-20 bg-main-blue-300 shadow flex items-center px-12 justify-between">
+          <div className="w-1/6 relative">
+            <div className="py-3 px-3 flex rounded-full border bg-white">
+              <img src={SearchIcon} alt="search-icon" className="" />
+              <input
+                className="appearance-none w-full px-3 text-gray-700 leading-tight focus:outline-none"
+                type="text"
+                placeholder="search"
+              />
+            </div>
+          </div>
+          <div className="flex w-1/6 items-center justify-between">
+            <img src={BellIcon} alt="notification-icon" />
+            <img src={HelpIcon} alt="help-icon" />
+            <div className="flex items-center">
+              <img
+                src={profilePic}
+                alt="profile-pic"
+                className="h-12 w-12 rounded-full object-cover"
+              />
+              <span className="capitalize text-white ml-4 text-xs">
+                Silas kayo
+              </span>
+            </div>
           </div>
         </div>
         <div className="">{children}</div>
